@@ -1,27 +1,27 @@
 --CLEAR ALL BEFORE RUN
-DELETE FROM Training_LIST;
-DELETE FROM TrainingPrograms;
-DELETE FROM Computers;
-DELETE FROM Departments;
-DELETE FROM Employees;
-DELETE FROM PaymentTypes;
-DELETE FROM Customers;
-DELETE FROM Order_LISTS;
-DELETE FROM Orders;
-DELETE FROM Products;
-DELETE FROM ProductTypes;
+-- DELETE FROM Training_LIST;
+-- DELETE FROM TrainingPrograms;
+-- DELETE FROM Computers;
+-- DELETE FROM Departments;
+-- DELETE FROM Employees;
+-- DELETE FROM PaymentTypes;
+-- DELETE FROM Customers;
+-- DELETE FROM Order_LISTS;
+-- DELETE FROM Orders;
+-- DELETE FROM Products;
+-- DELETE FROM ProductTypes;
 
-DROP TABLE IF EXISTS ProductTypes;
-DROP TABLE IF EXISTS Products;
-DROP TABLE IF EXISTS Orders;
-DROP TABLE IF EXISTS Order_LISTS;
-DROP TABLE IF EXISTS Customers;
-DROP TABLE IF EXISTS PaymentTypes;
-DROP TABLE IF EXISTS Employees;
-DROP TABLE IF EXISTS Departments;
-DROP TABLE IF EXISTS Computers;
-DROP TABLE IF EXISTS TrainingPrograms;
-DROP TABLE IF EXISTS Training_LIST;
+-- DROP TABLE IF EXISTS ProductTypes;
+-- DROP TABLE IF EXISTS Products;
+-- DROP TABLE IF EXISTS Orders;
+-- DROP TABLE IF EXISTS Order_LISTS;
+-- DROP TABLE IF EXISTS Customers;
+-- DROP TABLE IF EXISTS PaymentTypes;
+-- DROP TABLE IF EXISTS Employees;
+-- DROP TABLE IF EXISTS Departments;
+-- DROP TABLE IF EXISTS Computers;
+-- DROP TABLE IF EXISTS TrainingPrograms;
+-- DROP TABLE IF EXISTS Training_LIST;
 
 --Customer and Order Setup
 CREATE TABLE 'ProductTypes' (
