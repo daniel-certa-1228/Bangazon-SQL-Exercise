@@ -2,13 +2,13 @@
 DELETE FROM Training_LIST;
 DELETE FROM TrainingPrograms;
 DELETE FROM Computers;
-DELETE FROM Departments;
 DELETE FROM Employees;
-DELETE FROM PaymentTypes;
-DELETE FROM Customers;
+DELETE FROM Departments;
 DELETE FROM Order_LISTS;
 DELETE FROM Orders;
+DELETE FROM PaymentTypes;
 DELETE FROM Products;
+DELETE FROM Customers;
 DELETE FROM ProductTypes;
 
 DROP TABLE IF EXISTS ProductTypes;
@@ -29,6 +29,14 @@ CREATE TABLE 'ProductTypes' (
 	'ProductTypeName' TEXT NOT NULL
 	);
 
+CREATE TABLE 'Customers' (
+	'CustomerId' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	'Customer_FirstName' TEXT NOT NULL,
+	"Customer_LastName" TEXT NOT NULL,
+	"Customer_Created" TEXT NOT NULL,
+	"Customer_Inactive" BOOLEAN NOT NULL DEFAULT 0
+);
+
 CREATE TABLE 'Products' (
 	'ProductId' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	'ProductTitle' TEXT NOT NULL,
@@ -37,6 +45,14 @@ CREATE TABLE 'Products' (
 	'ProductType' INTEGER NOT NULL,
 	'CustomerId' INTEGER NOT NULL,
 	FOREIGN KEY('ProductType') REFERENCES 'ProductTypes' ('ProductTypeId'),
+	FOREIGN KEY('CustomerId') REFERENCES 'Customers' ('CustomerId')
+);
+
+CREATE TABLE 'PaymentTypes' (
+	'PaymentTypeId' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	'PaymentType' TEXT NOT NULL,
+	"PaymentAccountNum" INTEGER NOT NULL,
+	"CustomerId" INTEGER NOT NULL,
 	FOREIGN KEY('CustomerId') REFERENCES 'Customers' ('CustomerId')
 );
 
@@ -57,31 +73,7 @@ CREATE TABLE 'Order_LISTS' (
 		FOREIGN KEY('OrderId') REFERENCES 'Orders' ('OrderId')
 );
 
-CREATE TABLE 'Customers' (
-	'CustomerId' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	'Customer_FirstName' TEXT NOT NULL,
-	"Customer_LastName" TEXT NOT NULL,
-	"Customer_Created" TEXT NOT NULL,
-	"Customer_Inactive" BOOLEAN NOT NULL DEFAULT 0
-);
-
-CREATE TABLE 'PaymentTypes' (
-	'PaymentTypeId' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	'PaymentType' TEXT NOT NULL,
-	"PaymentAccountNum" INTEGER NOT NULL,
-	"CustomerId" INTEGER NOT NULL,
-	FOREIGN KEY('CustomerId') REFERENCES 'Customers' ('CustomerId')
-);
-
-
---Epmloyee and Company Setup
-CREATE TABLE 'Employees' (
-	'EmployeeId' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	'Employee_FirstName' TEXT NOT NULL,
-	"Employee_LastName" TEXT NOT NULL,
-	"DepartmentId" INTEGER NOT NULL,
-	FOREIGN KEY('DepartmentId') REFERENCES 'Departments' ('DepartmentId')
-);
+--Employee and Company Setup
 
 CREATE TABLE 'Departments' (
 	'DepartmentId' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -90,8 +82,19 @@ CREATE TABLE 'Departments' (
 	"Budget" INTEGER NOT NULL
 );
 
+CREATE TABLE 'Employees' (
+	'EmployeeId' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	'Employee_FirstName' TEXT NOT NULL,
+	"Employee_LastName" TEXT NOT NULL,
+	"DepartmentId" INTEGER NOT NULL,
+	"Salary" INTEGER NOT NULL,
+	FOREIGN KEY('DepartmentId') REFERENCES 'Departments' ('DepartmentId')
+);
+
 CREATE TABLE 'Computers' (
 	'ComputerId' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	'Brand' TEXT NOT NULL,
+	'Model'TEXT NOT NULL,
 	'PurchaseDate' TEXT NOT NULL,
 	'DecomissionDate' TEXT NOT NULL,
 	'EmployeeId' INTEGER NOT NULL,
@@ -149,21 +152,26 @@ INSERT INTO Order_LISTS VALUES (null, 2, 1);
 INSERT INTO Order_LISTS VALUES (null, 2, 2);
 INSERT INTO Order_LISTS VALUES (null, 1, 2);
 --###########
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO Departments VALUES (null, 'Payroll', 'Suzy Moneyperson', 10000);
+INSERT INTO Departments VALUES (null, 'IT', 'Joe McUnpleasant', 13000);
+INSERT INTO Departments VALUES (null, 'Fullfillmet', 'Stockard Channing', 7000);
+INSERT INTO Departments VALUES (null, 'Sales', 'Selly McSellerson', 20000);
+--###########
+INSERT INTO Employees VALUES (null, 'Gene', 'Simmons', 1, 35000);
+INSERT INTO Employees VALUES (null, 'Paul', 'Stanley', 3, 45000);
+INSERT INTO Employees VALUES (null, 'Peter', 'Criss', 2, 65000);
+INSERT INTO Employees VALUES (null, 'Ace', 'Frehley', 4, 78900);
+--###########
+INSERT INTO Computers VALUES (null, 'Apple', 'MacBook Pro','10/10/2017', 'n/a', 4);
+INSERT INTO Computers VALUES (null, 'Apple', 'iMac G3','03/15/1998', '12/12/2003', 1);
+--###########
+INSERT INTO TrainingPrograms VALUES (null, 'How Not To Suck', '11/03/2017','11/15/2017', 30);
+INSERT INTO TrainingPrograms VALUES (null, 'Sell Stuff For Money', '12/03/2017','12/15/2017', 25);
+--###########
+INSERT INTO Training_LIST VALUES (null, 1, 1);
+INSERT INTO Training_LIST VALUES (null, 1, 3);
+INSERT INTO Training_LIST VALUES (null, 1, 2);
+INSERT INTO Training_LIST VALUES (null, 2, 1);
+INSERT INTO Training_LIST VALUES (null, 2, 3);
+INSERT INTO Training_LIST VALUES (null, 2, 4);
 
