@@ -61,6 +61,7 @@ CREATE TABLE 'Orders' (
 	'CustomerId' INTEGER NOT NULL,
 	'PaymentType' INTEGER,
 	'OrderTotal' FLOAT(6,2) NOT NULL,
+	'OrderActive' BOOLEAN NOT NULL DEFAULT 0,
 	FOREIGN KEY('CustomerId') REFERENCES 'Customers' ('CustomerId'),
 	FOREIGN KEY('PaymentType') REFERENCES 'PaymentTypes' ('PaymentTypeId')
 );
@@ -143,8 +144,8 @@ INSERT INTO PaymentTypes VALUES (null, 'Visa', 6574839201, 1);
 INSERT INTO PaymentTypes VALUES (null, 'Bank of America', 098765432, 2);
 INSERT INTO PaymentTypes VALUES (null, 'Visa', 102938475, 2);
 --###########
-INSERT INTO Orders VALUES (null, 4, 1, 10.99);
-INSERT INTO Orders VALUES (null, 3, 2, 309.32);
+INSERT INTO Orders VALUES (null, 4, 1, 10.99, 0);
+INSERT INTO Orders VALUES (null, 3, 2, 309.32, 1);
 --###########
 INSERT INTO Order_LISTS VALUES (null, 4, 1);
 INSERT INTO Order_LISTS VALUES (null, 1, 1);
